@@ -1,0 +1,23 @@
+﻿<syncfusion:RibbonWindow x:Class="WPFRibbonApplicationMenu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFRibbonApplicationMenu"
+        mc:Ignorable="d" WindowStyle="None" IsGlassActive="False" Style="{StaticResource Office2013RibbonWindowStyle}"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <syncfusion:Ribbon x:Name="_ribbon" VerticalAlignment="Top">
+            <syncfusion:RibbonTab Caption="HOME"  IsChecked="True">
+                <syncfusion:RibbonBar Name="New"   Header="New">                   
+                </syncfusion:RibbonBar>
+                <syncfusion:RibbonBar Name="Delete" Header="Delete">
+                </syncfusion:RibbonBar>
+            </syncfusion:RibbonTab>
+            <syncfusion:RibbonTab Caption="SEND/RCEIVE"  IsChecked="False"/>
+            <syncfusion:RibbonTab Caption="FOLDER"  IsChecked="False"/>
+            <syncfusion:RibbonTab Caption="VIEW"  IsChecked="False"/>
+        </syncfusion:Ribbon>
+    </Grid>
+</syncfusion:RibbonWindow>
