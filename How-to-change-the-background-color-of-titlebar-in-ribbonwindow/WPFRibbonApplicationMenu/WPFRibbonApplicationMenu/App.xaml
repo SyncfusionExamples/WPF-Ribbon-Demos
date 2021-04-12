@@ -1,0 +1,400 @@
+﻿<Application x:Class="WPFRibbonApplicationMenu.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPFRibbonApplicationMenu"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:shell="clr-namespace:Syncfusion.Windows;assembly=Syncfusion.Shared.Wpf"
+             xmlns:shared="clr-namespace:Syncfusion.Windows.Shared;assembly=Syncfusion.Shared.WPF"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Syncfusion.Tools.WPF;component/Framework/Ribbon/Themes/Office2013Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--  TitleBar Style  -->
+            <Style x:Key="TitleBarStyleKey" TargetType="{x:Type syncfusion:TitleBar}">
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="Foreground" Value="{StaticResource RibbonForeground}" />
+                <Setter Property="ClipToBounds" Value="False" />
+                <Setter Property="Background" Value="LightPink" />
+                <Setter Property="BorderBrush" Value="{StaticResource RibbonBorderBrush}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type syncfusion:TitleBar}">
+
+                            <Border Margin="0,0,0,0"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid>
+                                    <Border HorizontalAlignment="Stretch">
+                                        <Grid HorizontalAlignment="Right">
+
+
+                                            <Image Grid.Column="1"
+                                           Width="500"
+                                           HorizontalAlignment="Right"
+                                           Opacity="0.2"
+                                           Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type syncfusion:RibbonWindow}},
+                                                            Path=TitleBarPatternImage}"
+                                           Stretch="fill" />
+                                        </Grid>
+                                    </Border>
+                                    <Grid Name="GlassActive" Height="{TemplateBinding Height}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15" />
+                                            <ColumnDefinition Width="{Binding Path=QATColumnWidth, Converter={StaticResource DoubleToGridLengthConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="{Binding Path=SysButtonsColumnWidth, Converter={StaticResource DoubleToGridLengthConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="2" Margin="10,0,10,10">
+
+                                            <TextBlock Name="PART_Title"
+                                               Grid.Column="2"
+                                               MaxWidth="{TemplateBinding TitleMaxWidth}"
+                                               Margin="0,5,0,0"
+                                               HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                                            AncestorType={x:Type syncfusion:RibbonWindow}},
+                                                                             Path=TitleTextAlignment}"
+                                               VerticalAlignment="Top"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Text="{TemplateBinding Title}" />
+                                        </Grid>
+                                        <Image x:Name="Part_SysIcon"
+                                       Width="16"
+                                       Height="16"
+                                       Margin="8,5,-9,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       shell:WindowChrome.IsHitTestVisibleInChrome="True"
+                                       Source="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                       AncestorType={x:Type syncfusion:RibbonWindow}},
+                                                        Path=Office2010Icon}"
+                                       Stretch="Fill" >
+
+                                        </Image>
+
+                                        <StackPanel x:Name="stack"
+                                            Grid.Column="3"
+                                            VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                            Orientation="Horizontal">
+                                            <syncfusion:WindowTitleBarButton x:Name="HelpButton"
+                                                                Width="29"
+                                                                Height="22"
+                                                                Style="{StaticResource HelpButtonStyle}"
+                                                               
+                                                                Visibility="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                                                    AncestorType={x:Type syncfusion:RibbonWindow}},
+                                                                                     Path=ShowHelpButton,
+                                                                                     Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                            </syncfusion:WindowTitleBarButton>
+                                            <syncfusion:WindowTitleBarButton x:Name="MinButton"
+                                                                Width="29"
+                                                                Height="22"
+                                                                Style="{StaticResource MinimizeButtonStyle}"
+                                                                ToolTip="{Binding Source={StaticResource ResourceWrapperKey},
+                                                                                  Path=MinimizeTooltip}">
+
+                                            </syncfusion:WindowTitleBarButton>
+                                            <syncfusion:WindowTitleBarButton x:Name="MaxButton"
+                                                                Width="29"
+                                                                Height="22"
+                                                                Style="{StaticResource MaximizeButtonStyle}"
+                                                                ToolTip="{Binding Source={StaticResource ResourceWrapperKey},
+                                                                                  Path=MaximizeTooltip}"
+                                                                Visibility="Collapsed">
+
+
+                                            </syncfusion:WindowTitleBarButton>
+                                            <syncfusion:WindowTitleBarButton x:Name="NormalButton"
+                                                                Width="29"
+                                                                Height="22"
+                                                                Style="{StaticResource NormalButtonStyle}"
+                                                                ToolTip="{Binding Source={StaticResource ResourceWrapperKey},
+                                                                                  Path=RestoreTooltip}">
+
+
+                                            </syncfusion:WindowTitleBarButton>
+                                            <syncfusion:WindowTitleBarButton x:Name="CloseButton"
+                                                                Width="29"
+                                                                Height="22"
+                                                                Command="Close"
+                                                                Style="{StaticResource CloseButtonStyle}"
+                                                                ToolTip="{Binding Source={StaticResource ResourceWrapperKey},
+                                                                                  Path=CloseTooltip}">
+
+                                            </syncfusion:WindowTitleBarButton>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=Office2010Icon}" Value="{x:Null}">
+                                    <Setter TargetName="Part_SysIcon" Property="Visibility" Value="Collapsed" />
+
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsActive}" Value="False">
+                                    <Setter TargetName="PART_Title" Property="Foreground" Value="#FFB1B1B1" />
+                                </DataTrigger>
+
+
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Maximized" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="Part_SysIcon" Property="Margin" Value="5,5,-7,0" />
+                                    <Setter TargetName="stack" Property="Margin" Value="0,0,-2,0" />
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Maximized" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="Part_SysIcon" Property="Margin" Value="5,8,-5,0" />
+                                    <Setter TargetName="stack" Property="Margin" Value="1,1,0,0" />
+                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Normal">
+                                    <Setter TargetName="MaxButton" Property="Visibility" Value="Visible" />
+
+                                    <Setter TargetName="NormalButton" Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Maximized">
+                                    <Setter TargetName="MaxButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="NormalButton" Property="Visibility" Value="Visible" />
+
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Minimized">
+                                    <Setter TargetName="MaxButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="NormalButton" Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=ResizeMode}" Value="CanMinimize">
+                                    <Setter TargetName="MaxButton" Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Normal" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="PART_Title" Property="BitmapEffect">
+                                        <Setter.Value>
+                                            <OuterGlowBitmapEffect GlowColor="#FFFFFFFF"
+                                                           GlowSize="14"
+                                                           Opacity="1" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiDataTrigger>
+
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowStyle}" Value="ToolWindow" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="MinButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="MaxButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="NormalButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="CloseButton" Property="Visibility" Value="Visible" />
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=MaximizedMode}" Value="KioskStyle" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Maximized" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowStyle}" Value="None" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="MinButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="MaxButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="NormalButton" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="CloseButton" Property="Visibility" Value="Collapsed" />
+                                </MultiDataTrigger>
+
+
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowState}" Value="Maximized" />
+                                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowStyle}" Value="None" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="GlassActive" Property="Visibility" Value="Collapsed" />
+                                </MultiDataTrigger>
+                                <Trigger Property="shared:SkinStorage.EnableTouch" Value="True">
+                                    <Setter Property="Margin" TargetName="Part_SysIcon" Value="8,13,-9,0"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="False">
+                        <Setter Property="SysButtonsColumnWidth" Value="116" />
+                    </DataTrigger>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="False" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=ShowHelpButton}" Value="false" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="SysButtonsColumnWidth" Value="116" />
+                    </MultiDataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=ResizeMode}" Value="NoResize">
+                        <Setter Property="SysButtonsColumnWidth" Value="26" />
+                    </DataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="False" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowStyle}" Value="ToolWindow" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="SysButtonsColumnWidth" Value="26" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=ResizeMode}" Value="CanResize" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="SysButtonsColumnWidth" Value="116" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=ResizeMode}" Value="CanResizeWithGrip" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="SysButtonsColumnWidth" Value="116" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowStyle}" Value="ToolWindow" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="SysButtonsColumnWidth" Value="20" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=IsGlassActive}" Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type syncfusion:RibbonWindow}}, Path=WindowStyle}" Value="None" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="SysButtonsColumnWidth" Value="0" />
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+            <SolidColorBrush x:Key="RibbonWindowBackground" Color="White" />
+            <SolidColorBrush x:Key="RibbonWindowBorderBrush" Color="#FF2B579A" />
+            <Style x:Key="Office2013RibbonWindowStyle" TargetType="{x:Type syncfusion:RibbonWindow}">
+                <Setter Property="RibbonStatusBarStyle" Value="{StaticResource Office2013RibbonStatusBarStyle}" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="MinWidth" Value="150" />
+                <Setter Property="MinHeight" Value="150" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="BorderBrush" Value="{StaticResource RibbonWindowBorderBrush}" />
+                <Setter Property="ShowHelpButton" Value="True" />
+                <Setter Property="Background" Value="{StaticResource RibbonWindowBackground}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="TitleTextAlignment" Value="Center" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type syncfusion:RibbonWindow}">
+
+                            <AdornerDecorator x:Name="PART_Adorner">
+
+                                <Grid >
+                                    <Grid.LayoutTransform>
+                                        <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding Path=ScaleX, RelativeSource={RelativeSource AncestorType={x:Type syncfusion:RibbonWindow}}}" ScaleY="{Binding Path=ScaleY, RelativeSource={RelativeSource AncestorType={x:Type syncfusion:RibbonWindow}}}" />
+                                    </Grid.LayoutTransform>
+                                    <Border Name="PART_MainBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}">
+                                        <Border x:Name="PART_Border">
+
+                                            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <syncfusion:TitleBar x:Name="PART_TitleBar"
+                                                        Title="{TemplateBinding Title}"
+                                                        Height="52"
+                                                        Margin="2,0,0,0"
+                                                        DockPanel.Dock="Top"
+                                                        Style="{StaticResource TitleBarStyleKey}" />
+                                                <Grid>
+                                                    <DockPanel Background="{TemplateBinding Background}">
+                                                        <ContentPresenter Content="{TemplateBinding StatusBar}" DockPanel.Dock="Bottom" />
+
+                                                        <Grid DockPanel.Dock="Bottom">
+                                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                                            <ContentControl x:Name="BackStageContent"
+                                                                    Content="{TemplateBinding BackStage}"
+                                                                    Visibility="Collapsed">
+                                                                <ContentControl.RenderTransform>
+                                                                    <TransformGroup>
+                                                                        <ScaleTransform />
+                                                                        <TranslateTransform />
+                                                                    </TransformGroup>
+                                                                </ContentControl.RenderTransform>
+                                                            </ContentControl>
+                                                        </Grid>
+                                                    </DockPanel>
+
+                                                    <Label x:Name="PART_ResizeGrip"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Bottom"
+                                                   Cursor="SizeNWSE"
+                                                   IsTabStop="False"
+                                                   Visibility="Collapsed">
+                                                        <Grid Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                            <Path Data="M 9,1 L 11,1 L 11,3 L 9,3 Z M 5,5 L 7,5 L 7,7 L 5,7 Z M 9,5 L 11,5 L 11,7 L 9,7 Z M 1,9 L 3,9 L 3,11 L 1,11 Z M 5,9 L 7,9 L 7,11 L 5,11 Z M 9,9 L 11,9 L 11,11 L 9,11 Z" Fill="{StaticResource Blue.ResizeGripperForegroundLight}" />
+
+                                                            <Path Data="M 8,0 L 10,0 L 10,2 L 8,2 Z M 4,4 L 6,4 L 6,6 L 4,6 Z M 8,4 L 10,4 L 10,6 L 8,6 Z M 0,8 L 2,8 L 2,10 L 0,10 Z M 4,8 L 6,8 L 6,10 L 4,10 Z M 8,8 L 10,8 L 10,10 L 8,10 Z" Fill="{StaticResource Blue.ResizeGripperForegroundDark}" />
+                                                        </Grid>
+                                                    </Label>
+                                                </Grid>
+                                            </DockPanel>
+                                        </Border>
+                                    </Border>
+                                </Grid>
+                            </AdornerDecorator>
+                            <ControlTemplate.Triggers>
+
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                                        <Condition Property="WindowState" Value="Normal" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="PART_ResizeGrip" Property="Visibility" Value="Visible" />
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="MaximizedMode" Value="KioskStyle" />
+                                        <Condition Property="WindowState" Value="Maximized" />
+                                        <Condition Property="WindowStyle" Value="None" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="PART_TitleBar" Property="Visibility" Value="Collapsed" />
+                                    <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="WindowState" Value="Maximized" />
+                                        <Condition Property="IsGlassActive" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="WindowState" Value="Maximized" />
+                                        <Condition Property="WindowStyle" Value="None" />
+                                    </MultiTrigger.Conditions>
+                                </MultiTrigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

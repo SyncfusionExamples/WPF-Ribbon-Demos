@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ribbon_ButtonPanel", "Ribbon_ButtonPanel.csproj", "{343087B2-D0C3-4D36-BA88-41BE68B4FF92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{343087B2-D0C3-4D36-BA88-41BE68B4FF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{343087B2-D0C3-4D36-BA88-41BE68B4FF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{343087B2-D0C3-4D36-BA88-41BE68B4FF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{343087B2-D0C3-4D36-BA88-41BE68B4FF92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB323D2E-AE7C-4AD9-AF1D-753A8E11762C}
+	EndGlobalSection
+EndGlobal

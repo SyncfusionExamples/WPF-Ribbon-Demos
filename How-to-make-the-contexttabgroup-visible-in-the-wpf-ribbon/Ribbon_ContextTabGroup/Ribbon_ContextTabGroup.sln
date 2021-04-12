@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ribbon_ContextTabGroup", "Ribbon_ContextTabGroup.csproj", "{48D06644-3F31-4077-B49C-12FFCF32CD01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48D06644-3F31-4077-B49C-12FFCF32CD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48D06644-3F31-4077-B49C-12FFCF32CD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48D06644-3F31-4077-B49C-12FFCF32CD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48D06644-3F31-4077-B49C-12FFCF32CD01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97849770-3F05-4A90-8A0C-C2870E1A73FA}
+	EndGlobalSection
+EndGlobal
