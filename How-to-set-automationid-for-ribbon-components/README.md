@@ -6,3 +6,5 @@ You can define the automation id for tab headers in [WPF Ribbon](https://www.syn
 control by using [AutomationId](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/use-the-automationid-property) attached property of AutomationProperties.
 
 The [AutomationId](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/use-the-automationid-property) property used to define the unique string and it helps to identify the specified element in Automation testing process and perform recorded action.
+
+KB article - [How to set Automation Id for WPF Ribbon control?](https://www.syncfusion.com/kb/9308/how-to-set-automation-id-for-wpf-ribbon-control)
